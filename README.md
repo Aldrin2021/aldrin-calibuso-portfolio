@@ -14,6 +14,10 @@
 
 3. This is for routing.
 
+### `npm instal axios`
+
+4. Used to fetch weather API
+
 ### `npm start`
 
 Runs the app in the development mode.
