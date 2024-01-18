@@ -18,6 +18,10 @@
 
 4. Used to fetch weather API
 
+### `npm install @auth0/auth0-react`
+
+5. Implementing authentication and authorization in React apps with Auth0
+
 ### `npm start`
 
 Runs the app in the development mode.
