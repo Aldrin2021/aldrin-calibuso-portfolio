@@ -25,3 +25,6 @@
 ### `npm start`
 
 Runs the app in the development mode.
+Note: If login is not working on: 
+    -http://localhost:3000 or http://192.168.202.150:3000
+    -try using this host http://127.0.0.1:3000/

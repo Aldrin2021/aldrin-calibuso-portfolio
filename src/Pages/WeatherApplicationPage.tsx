@@ -1,11 +1,15 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "../axiosConfig";
 import { styled } from "styled-components";
 import { Button } from "../Button/Button";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
+import {
+  getWeather,
+  getGitHubInfo,
+  getCurrentDate,
+} from "../PagesHelpers/PagesHelpers";
 
 export const WeatherApplicationPage: React.FC = () => {
   const { isAuthenticated, user, isLoading } = useAuth0();
@@ -17,11 +21,7 @@ export const WeatherApplicationPage: React.FC = () => {
 
   React.useEffect(() => {
     const now = new Date();
-    const formattedDate = now.toLocaleDateString(undefined, {
-      month: "2-digit",
-      day: "2-digit",
-      year: "numeric",
-    });
+    const formattedDate = getCurrentDate(now);
     setCurrentDate(formattedDate);
   }, []);
 
@@ -35,40 +35,13 @@ export const WeatherApplicationPage: React.FC = () => {
     setCity(e.target.value);
   };
 
-  const fetchWeather = async () => {
-    try {
-      const response = await axios.get(`/weather?q=${city}&appid=${apiKey}`);
-      if (response.data) {
-        navigate("/weather-forecast-result", {
-          state: {
-            weatherData: response.data,
-            currentDate: currentDate,
-            isAuthenticated: isAuthenticated,
-          },
-        });
-      }
-    } catch (error) {
-      alert("Error fetching weather data");
-    }
+  const onClickCityHandler = async () => {
+    await getWeather(navigate, currentDate, isAuthenticated, city, apiKey);
   };
 
   if (isLoading) {
     return <Loader />;
   }
-
-  const getGitHubInfo = () => {
-    if (user) {
-      const githubPageUrl = `https://github.com/${user.nickname}`;
-      return (
-        <p>
-          <a href={githubPageUrl} target="_blank" rel="noreferrer">
-            {githubPageUrl}
-          </a>
-        </p>
-      );
-    }
-    return null;
-  };
 
   return (
     <>
@@ -77,7 +50,7 @@ export const WeatherApplicationPage: React.FC = () => {
           <NavigationBar />
           <StyledInfoContainer>
             <StyledName>Hello, {user?.nickname}</StyledName>
-            <StyledSocialInfo>{getGitHubInfo()}</StyledSocialInfo>
+            <StyledSocialInfo>{getGitHubInfo(user)}</StyledSocialInfo>
             <StyledInput
               type="text"
               placeholder="City"
@@ -86,7 +59,7 @@ export const WeatherApplicationPage: React.FC = () => {
               onChange={onChangeHandler}
             />
             <Button
-              onClick={fetchWeather}
+              onClick={onClickCityHandler}
               disabled={city.trim() === ""}
               label="Display Weather"
               customStyles={{
