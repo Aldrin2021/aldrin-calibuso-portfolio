@@ -1,6 +1,16 @@
 # Getting Started with Weather Forecast Application
 
-# This app was created using React.JS/Typescript
+# Below are the steps on how to run the application: 
+1. `git clone <repo>`
+2. `npm install`
+3. `npm start`
+
+Runs the app in the development mode.
+    Note: If login is not working on: 
+    -http://localhost:3000 or http://192.168.202.150:3000
+    -try using this host http://127.0.0.1:3000/
+
+# other steps that have been used before the development:
 
 ### `npx create-react-app weather-forecast-app --template typescript`
 
@@ -14,17 +24,7 @@
 
 3. This is for routing.
 
-### `npm instal axios`
-
-4. Used to fetch weather API
-
 ### `npm install @auth0/auth0-react`
 
 5. Implementing authentication and authorization in React apps with Auth0
 
-### `npm start`
-
-Runs the app in the development mode.
-Note: If login is not working on: 
-    -http://localhost:3000 or http://192.168.202.150:3000
-    -try using this host http://127.0.0.1:3000/
