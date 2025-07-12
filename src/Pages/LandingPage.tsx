@@ -1,102 +1,120 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { NavigationWrapper } from "../NavigationBar/NavigationWrapper";
+import { sections } from "../PagesHelpers/PagesHelpers";
+
+import styled from "styled-components";
+import { Download } from "../Button/Download";
+import { About } from "./About";
+import { SectionLabel } from "../SectionLabel/SectionLabel";
+import { Experiences } from "./Experiences";
+import { Home } from "./Home";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
-import { Loader } from "../Loader/Loader";
+import { Contact } from "./Contact";
 
 export const LandingPage: React.FC = () => {
-  const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
-  const navigate = useNavigate();
+  const [activeSection, setActiveSection] = React.useState<string | boolean>(
+    "home"
+  );
+  const [manualActive, setManualActive] = React.useState<string | null>(null);
 
-  const handleLogin = async () => {
-    try {
-      loginWithRedirect();
-    } catch (error) {
-      alert("Error logging in");
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        if (activeSection !== "home") setActiveSection("home");
+        return;
+      }
+
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      let currentSection = "about";
+
+      for (const { id } of sections) {
+        if (id === "home") continue;
+        const element = document.getElementById(id);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          if (scrollPosition >= offsetTop) {
+            currentSection = id;
+          }
+        }
+      }
+
+      if (currentSection !== activeSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection]);
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (isAuthenticated) {
-    navigate("/weather-forecast");
-    return null;
-  }
-
   return (
-    <React.Fragment>
-      <NavigationBar />
-      <StyledContainer>
-        <StyledTitle>Hello, World!</StyledTitle>
-        <StyledSubtitle>
-          Welcome to the Weather web application. Please login with your Github
-          user to use the application and view the weather in you city
-        </StyledSubtitle>
-        <StyledButton onClick={handleLogin}>Log in</StyledButton>
-      </StyledContainer>
-    </React.Fragment>
+    <>
+      <NavigationWrapper
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+      />
+      <div id="home">
+        <Home />
+      </div>
+
+      <div id="about">
+        <About />
+      </div>
+
+      <div id="experiences">
+        <Experiences />
+      </div>
+
+      <div id="contact">
+        <Contact />
+      </div>
+    </>
   );
 };
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: left;
-  margin-top: 15rem;
-  padding: 30px;
-
-  @media (max-width: 768px) {
-    margin-top: 10rem;
-    padding: 20px;
-  }
+const StyledFirstSection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 30% 0 30% 0;
+  padding-left: 50px;
+  grid-row: 2 / span 1;
 `;
 
-const StyledTitle = styled.h1`
-  color: black;
-  font-size: 24px;
-
+const StyledTitle = styled.label`
+  color: #fffffe;
+  font-size: 50px;
+  font-weight: 900;
   @media (max-width: 768px) {
     font-size: 20px;
   }
 `;
 
-const StyledSubtitle = styled.h4`
-  color: black;
-  font-size: 16px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
+const StyledFirstSubHeader = styled.div`
+  font-size: 25px;
+  grid-column: 1;
+  color: #a7a9be;
 `;
 
-const StyledButton = styled.button`
-  padding: 12px;
-  background: #900b40;
-  border: 1px solid #900b40;
-  border-radius: 3px;
-  width: 100%;
-  max-width: 150px;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  transition: 0.3s ease;
-  cursor: pointer;
-  float: left;
+const StyledFirstDescription = styled.div`
+  grid-column: 1;
+`;
 
-  &:hover {
-    background: #c70039;
-  }
+const StyledSubHeader = styled.label`
+  color: #abd1c6;
+  font-size: 14px;
+`;
 
-  @media (max-width: 768px) {
-    padding: 15px;
-    font-size: 14px;
-  }
+const StyledDownload = styled.div`
+  margin-top: 20px;
 `;
