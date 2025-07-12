@@ -1,22 +1,19 @@
+import React, { useEffect } from "react";
 import "./App.css";
-import { WeatherApplicationPage } from "./Pages/WeatherApplicationPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LandingPage } from "./Pages/LandingPage";
-import { WeatherResultsPage } from "./Pages/WeatherResultsPage";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/weather-forecast" element={<WeatherApplicationPage />} />
-        <Route
-          path="/weather-forecast-result"
-          element={<WeatherResultsPage />}
-        />
-      </Routes>
-    </Router>
-  );
+  useEffect(() => {
+    AOS.init({
+      delay: 200,
+      duration: 600,
+      easing: "ease",
+    });
+  }, []);
+
+  return <LandingPage />;
 }
 
 export default App;

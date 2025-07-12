@@ -1,65 +1,105 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { styled } from "styled-components";
-import { Button } from "../Button/Button";
-import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { sections } from "../PagesHelpers/PagesHelpers";
 
-export const NavigationBar: React.FC = () => {
-  const { logout, isAuthenticated } = useAuth0();
-  const navigate = useNavigate();
+interface Props {
+  activeSection?: string | boolean;
+  scrollToSection: (id: string) => void;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const logOutHandler = () => {
-    logout({ logoutParams: { returnTo: window.location.origin } });
-  };
-
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/");
-    }
-  }, [navigate, isAuthenticated]);
-
+export const NavigationBar: React.FC<Props> = ({
+  activeSection,
+  scrollToSection,
+  menuOpen,
+  setMenuOpen,
+}) => {
   return (
-    <StyledMainNavigation>
-      <StyledUnorderedList>
-        <StyledList>Weather Forecast</StyledList>
-        <StyledList>
-          {isAuthenticated && (
-            <Button
-              onClick={logOutHandler}
-              label="Log out"
-              customStyles={{ background: "none", cursor: "pointer" }}
-            />
-          )}
-        </StyledList>
-      </StyledUnorderedList>
-    </StyledMainNavigation>
+    <NavContainer>
+      <NavList>
+        {sections.map(({ id, label }) => (
+          <NavItem key={id}>
+            <StyledLink
+              href={`#${id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(id);
+              }}
+              className={activeSection === id ? "active" : ""}
+            >
+              {label}
+            </StyledLink>
+          </NavItem>
+        ))}
+      </NavList>
+    </NavContainer>
   );
 };
 
-const StyledMainNavigation = styled.nav`
-  background: #900b40;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
-`;
-
-const StyledUnorderedList = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+const NavContainer = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  background-color: #080808;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 20px;
 `;
 
-const StyledList = styled.li`
-  float: left;
-  font-size: 25px;
-  font-family: Optima, sans-serif;
-  color: white;
+const NavList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 50%;
+  width: 100%;
+`;
 
-  @media (max-width: 768px) {
-    font-size: 18px;
+const NavItem = styled.li`
+  flex: 1;
+  width: 100%;
+  display: flex;
+`;
+
+const StyledLink = styled.a`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-lr;
+  transform: rotate(360deg);
+  text-decoration: none;
+  color: white;
+  opacity: 0.5;
+  font-size: 17px;
+  border-right: 3px solid transparent;
+  padding: 0;
+  margin: 0;
+
+  &.active {
+    opacity: 1;
+    border-right: 3px solid #00ffff;
+    font-weight: bold;
+    background-color: #111;
   }
+
+  &:hover {
+    opacity: 1;
+    border-right: 3px solid #00ffff;
+    background-color: #111;
+    color: #ebecf3;
+  }
+
+  // @media (max-width: 768px) {
+  //   writing-mode: horizontal-tb;
+  //   transform: none;
+  //   padding: 10px 20px;
+  //   border: none;
+  // }
 `;
