@@ -1,6 +1,5 @@
 import React from "react";
 import { NavigationBar } from "./NavigationBar";
-import { Breadcrumb } from "../Breadcrumb/Breadcrumb";
 
 interface Props {
   activeSection?: string | boolean;

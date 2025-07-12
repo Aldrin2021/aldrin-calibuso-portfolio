@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavigationWrapper } from "../NavigationBar/NavigationWrapper";
 import { sections } from "../PagesHelpers/PagesHelpers";
-
-import styled from "styled-components";
-import { Download } from "../Button/Download";
 import { About } from "./About";
-import { SectionLabel } from "../SectionLabel/SectionLabel";
 import { Experiences } from "./Experiences";
 import { Home } from "./Home";
-import { NavigationBar } from "../NavigationBar/NavigationBar";
 import { Contact } from "./Contact";
 
 export const LandingPage: React.FC = () => {
   const [activeSection, setActiveSection] = React.useState<string | boolean>(
     "home"
   );
-  const [manualActive, setManualActive] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -81,40 +75,3 @@ export const LandingPage: React.FC = () => {
     </>
   );
 };
-
-const StyledFirstSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  padding: 30% 0 30% 0;
-  padding-left: 50px;
-  grid-row: 2 / span 1;
-`;
-
-const StyledTitle = styled.label`
-  color: #fffffe;
-  font-size: 50px;
-  font-weight: 900;
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-`;
-
-const StyledFirstSubHeader = styled.div`
-  font-size: 25px;
-  grid-column: 1;
-  color: #a7a9be;
-`;
-
-const StyledFirstDescription = styled.div`
-  grid-column: 1;
-`;
-
-const StyledSubHeader = styled.label`
-  color: #abd1c6;
-  font-size: 14px;
-`;
-
-const StyledDownload = styled.div`
-  margin-top: 20px;
-`;
