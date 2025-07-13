@@ -50,13 +50,14 @@ export const Experiences: React.FC = () => {
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  height: 100vh;
+  height: auto;
   margin: 0 auto;
 
   @media screen and (max-width: 768px) {
@@ -93,8 +94,7 @@ const StyledMainHeader = styled.div`
   box-sizing: border-box;
   width: 100%;
   font-size: 80px;
-  font-weight: bolder;
-  letter-spacing: 3px;
+  font-weight: 900;
 
   label {
     margin-left: 2px;

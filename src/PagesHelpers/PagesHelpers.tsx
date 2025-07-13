@@ -7,11 +7,16 @@ import styledComponentsImage from "../Images/styled-component.png";
 import scssImage from "../Images/scss.png";
 import tailwindImage from "../Images/tailwind-css.png";
 import eslintImage from "../Images/eslint.png";
+import quoteImage from "../Images/quote-mark.svg";
+import author1Img from "../Images/TestimonialAuthor/author-1.jpeg";
+import author2Img from "../Images/TestimonialAuthor/author-2.jpeg";
+import author3Img from "../Images/TestimonialAuthor/author-3.jpg";
 
 export const sections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "experiences", label: "Experience" },
+  { id: "feedback", label: "Feedback" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -154,6 +159,41 @@ export const experiences: ExperienceSection[] = [
     subtitle: "BS Information Technology",
     description:
       "Completed a 4-year degree in Information Technology with a focus on website development and hands-on experience through capstone projects for real clients.",
+  },
+];
+
+type FeedbackSection = {
+  image?: string;
+  svg?: string;
+  feedbackContent?: string;
+  feedbackAuthor?: string;
+  feedbackRole?: string;
+};
+
+export const feedback: FeedbackSection[] = [
+  {
+    image: author3Img,
+    svg: quoteImage,
+    feedbackContent:
+      "Aldrin was tasked to urgently deliver the logo epic that requires immediate changes due to late discovery of the needed requirement. It was initially assessed that it was just a small effort given of the context of the requirement but design and acceptance process proves the challenges of progressing. He even had to improvise to assist in finalizing the design. In the end, he still was able to deliver the approved design on the required date. After then, in relation to this delivery, he again needed to stretch to learn  another backend system he never knew existed to include a missed requirement. He was resourceful enough to learn what he needs to deliver and again, the team was able to rely on Aldrin in completing the delivery on time.",
+    feedbackAuthor: "Aiza I. Arellano",
+    feedbackRole: "Program and Project Mgmt Manager",
+  },
+  {
+    image: author1Img,
+    svg: quoteImage,
+    feedbackContent:
+      "A great colleague, very helpful in times of need, always thirst for more.",
+    feedbackAuthor: "Kim Asuncion",
+    feedbackRole: "Quality Engineering Analyst",
+  },
+  {
+    image: author2Img,
+    svg: quoteImage,
+    feedbackContent:
+      "Despite the many challenges we've encountered, you’ve consistently added value to every deliverable. Your dedication and exemplary teamwork truly stand out—keep up the fantastic work!",
+    feedbackAuthor: "Leidy E. M. Jimenez",
+    feedbackRole: "Scrum Master Manager",
   },
 ];
 

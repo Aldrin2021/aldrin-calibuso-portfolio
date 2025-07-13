@@ -79,13 +79,13 @@ const StyledLink = styled.a`
   opacity: 0.5;
   font-size: 17px;
   border-right: 3px solid transparent;
-  padding: 0;
+  padding: 16px;
   margin: 0;
 
   &.active {
     opacity: 1;
     border-right: 3px solid #00ffff;
-    font-weight: bold;
+    font-weight: 500;
     background-color: #111;
   }
 

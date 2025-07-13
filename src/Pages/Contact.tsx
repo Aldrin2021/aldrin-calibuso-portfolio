@@ -59,8 +59,7 @@ const StyledMainHeader = styled.div`
   box-sizing: border-box;
   width: 100%;
   font-size: 80px;
-  font-weight: bolder;
-  letter-spacing: 3px;
+  font-weight: 900;
 
   &::before {
     content: "";

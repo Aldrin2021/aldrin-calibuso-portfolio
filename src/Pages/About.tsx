@@ -52,7 +52,7 @@ export const About: React.FC = () => {
               In addition to front-end development, I’ve also provided L2
               support for complex platforms like SAP Hybris, handling issue
               triaging, system monitoring, and integration troubleshooting. I’m
-              comfortable working across the full SDLC—from UI implementation
+              comfortable working across the full Agile—from UI implementation
               using Figma/Zeplin designs, to API integrations (REST, GraphQL),
               testing (Jest, Cypress), and automation using Groovy and Impex on
               HAC. I enjoy solving problems, improving team processes, and
@@ -141,8 +141,7 @@ const StyledMainHeader = styled.div`
   box-sizing: border-box;
   width: 100%;
   font-size: 80px;
-  font-weight: bolder;
-  letter-spacing: 3px;
+  font-weight: 900;
 
   label {
     margin-left: 2px;
@@ -185,7 +184,7 @@ const StyledHeader = styled.div`
   margin: 0;
   align-items: center;
   box-sizing: border-box;
-
+  text-align: justify;
 
   img {
     flex: 1;
@@ -225,6 +224,7 @@ const StyledCardContainer = styled.div`
   gap: 1rem;
   justify-content: left;
   align-items: center;
+  height: 110px;
 `;
 
 const StyledFlexButton = styled.div`

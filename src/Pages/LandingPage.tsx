@@ -5,6 +5,7 @@ import { About } from "./About";
 import { Experiences } from "./Experiences";
 import { Home } from "./Home";
 import { Contact } from "./Contact";
+import { Feedback } from "./Feedback";
 
 export const LandingPage: React.FC = () => {
   const [activeSection, setActiveSection] = React.useState<string | boolean>(
@@ -67,6 +68,10 @@ export const LandingPage: React.FC = () => {
 
       <div id="experiences">
         <Experiences />
+      </div>
+
+      <div id="feedback">
+        <Feedback />
       </div>
 
       <div id="contact">
