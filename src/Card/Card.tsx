@@ -79,11 +79,10 @@ const StyledCard = styled.div<{
   background: #333;
   padding: 10px;
   width: 100%;
-  max-width: 100%;
   height: 100%;
   max-height: ${({ isOnlyTitle }) => (isOnlyTitle ? "40px" : "none")};
   border-radius: 40px;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease;
 
   .card-title {
     transition: transform 0.3s ease;
@@ -92,6 +91,10 @@ const StyledCard = styled.div<{
   > * {
     position: relative;
     z-index: 1;
+  }
+
+  &:hover {
+    background-color: #444;
   }
 `;
 
