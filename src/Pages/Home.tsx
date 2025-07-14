@@ -1,14 +1,12 @@
 import React from "react";
-import { Download } from "../Button/Download";
 import styled from "styled-components";
+import { NavigationSocials } from "../NavigationBar/NavigationSocials";
 
 export const Home: React.FC = () => {
   return (
     <React.Fragment>
       <StyledContainer>
-        <StyledDownload>
-          <Download />
-        </StyledDownload>
+        <NavigationSocials />
         <StyledContent>
           <StyledTitle>Hello, I'm Aldrin</StyledTitle>
           <StyledRole>
@@ -21,24 +19,10 @@ export const Home: React.FC = () => {
 };
 
 const StyledContainer = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100vh;
-  padding: 80px 80px;
-
-  @media screen and (max-width: 600px) {
-    padding-left: 0;
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 `;
 
 const StyledContent = styled.div`
@@ -46,6 +30,18 @@ const StyledContent = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
+  height: 100vh;
+  width: 100%;
+  padding: 0 80px 150px 300px;
+
+  @media (max-width: 767px) {
+    display: flex;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 120px;
+  }
 `;
 
 const StyledTitle = styled.div`
@@ -59,8 +55,14 @@ const StyledTitle = styled.div`
     color: #00ffff;
   }
 
-  @media screen and (max-width: 600px) {
+  @media (max-width: 767px) {
     font-size: 30px;
+    padding: 0;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    font-size: 60px;
   }
 `;
 
@@ -74,15 +76,14 @@ const StyledRole = styled.div`
     color: #00ffff;
   }
 
-  @media screen and (max-width: 600px) {
+  @media (max-width: 767px) {
     font-size: 20px;
     color: #00ffff;
+    text-align: center;
+    font-weight: 300;
   }
-`;
 
-const StyledDownload = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 30px 50px 0 0;
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    font-size: 30px;
+  }
 `;

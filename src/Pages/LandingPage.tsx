@@ -1,16 +1,18 @@
 import React from "react";
 import { NavigationWrapper } from "../NavigationBar/NavigationWrapper";
-import { sections } from "../PagesHelpers/PagesHelpers";
+import { sections, useIsMobile } from "../PagesHelpers/PagesHelpers";
 import { About } from "./About";
 import { Experiences } from "./Experiences";
 import { Home } from "./Home";
 import { Contact } from "./Contact";
 import { Feedback } from "./Feedback";
+import { NavigationMobile } from "../NavigationBar/NavigationMobile";
 
 export const LandingPage: React.FC = () => {
   const [activeSection, setActiveSection] = React.useState<string | boolean>(
     "home"
   );
+  const isMobile = useIsMobile();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -40,24 +42,45 @@ export const LandingPage: React.FC = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initial check on mount
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
-    if (section) {
+    const headerOffset = 90;
+
+    if (!section) return;
+
+    const elementPosition =
+      section.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
+
+    if (isMobile) {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <>
-      <NavigationWrapper
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-      />
+      {isMobile ? (
+        <NavigationMobile
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+        />
+      ) : (
+        <NavigationWrapper
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+        />
+      )}
+
       <div id="home">
         <Home />
       </div>

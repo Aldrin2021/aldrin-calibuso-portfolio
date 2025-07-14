@@ -95,11 +95,4 @@ const StyledLink = styled.a`
     background-color: #111;
     color: #ebecf3;
   }
-
-  // @media (max-width: 768px) {
-  //   writing-mode: horizontal-tb;
-  //   transform: none;
-  //   padding: 10px 20px;
-  //   border: none;
-  // }
 `;

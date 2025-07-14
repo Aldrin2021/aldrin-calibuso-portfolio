@@ -50,4 +50,8 @@ const StyledButton = styled.a`
   &:hover {
     color: #000;
   }
+
+  @media (max-width: 767px) {
+    padding: 8px 8px;
+  }
 `;

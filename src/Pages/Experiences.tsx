@@ -5,79 +5,84 @@ import { experiences, firstStack } from "../PagesHelpers/PagesHelpers";
 
 export const Experiences: React.FC = () => {
   return (
-    <React.Fragment>
-      <StyledContainer>
-        <StyledBox>
-          <StyledMainHeader
-            data-aos="fade-left"
-            data-aos-delay="100"
-            data-aos-offset="0"
-            data-aos-once="true"
-          >
-            Experience<label>.</label>
-          </StyledMainHeader>
-          <StyledFlex
-            data-aos="fade"
-            data-aos-delay="200"
-            data-aos-offset="0"
-            data-aos-once="true"
-          >
-            {experiences.map(
-              ({ label, title, subtext, subtitle, description }) => {
-                const matchingStacks = firstStack.find(
-                  (item) => item.label === label
-                );
-                return (
-                  <StyledCard>
-                    <StyledCardWrapper
-                      title={title}
-                      subText={subtext}
-                      subtitle={subtitle}
-                      description={description}
-                      stack={matchingStacks?.stack}
-                    />
-                  </StyledCard>
-                );
-              }
-            )}
-          </StyledFlex>
-        </StyledBox>
-      </StyledContainer>
-    </React.Fragment>
+    <StyledContainer>
+      <StyledBox>
+        <StyledMainHeader
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-offset="0"
+          data-aos-once="true"
+        >
+          Experience<label>.</label>
+        </StyledMainHeader>
+        <StyledFlex
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-offset="0"
+          data-aos-once="true"
+        >
+          {experiences.map(
+            ({ label, title, subtext, subtitle, description }) => {
+              const matchingStacks = firstStack.find(
+                (item) => item.label === label
+              );
+              return (
+                <StyledCard key={label}>
+                  <StyledCardWrapper
+                    title={title}
+                    subText={subtext}
+                    subtitle={subtitle}
+                    description={description}
+                    stack={matchingStacks?.stack}
+                  />
+                </StyledCard>
+              );
+            }
+          )}
+        </StyledFlex>
+      </StyledBox>
+    </StyledContainer>
   );
 };
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  height: auto;
+  height: 100vh;
   margin: 0 auto;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     height: auto;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 20px;
   }
 `;
 
 const StyledBox = styled.div`
-  padding: 0 30px 0 30px;
+  padding: 0 30px;
   margin: 40px;
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 768px) {
-    padding: 0;
+  @media screen and (max-width: 767px) {
+    padding: 0 10px;
+    margin: 20px 0;
   }
 `;
 
 const StyledCard = styled.div`
   transition: transform 0.2s ease-in-out;
+  width: 100%;
+
   &:hover {
     transform: translateY(-3px);
   }
@@ -89,11 +94,10 @@ const StyledMainHeader = styled.div`
   color: #fffffe;
   flex: 1;
   padding-bottom: 20px;
-  margin: 0;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-  font-size: 80px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
 
   label {
@@ -111,6 +115,16 @@ const StyledMainHeader = styled.div`
     opacity: 0.3;
     max-width: auto;
   }
+
+  @media screen and (max-width: 767px) {
+    font-size: 36px;
+    label {
+      font-size: 36px;
+    }
+    &::before {
+      margin-right: 10px;
+    }
+  }
 `;
 
 const StyledFlex = styled.div`
@@ -118,6 +132,11 @@ const StyledFlex = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const StyledCardWrapper = styled(CardWrapper)`
@@ -126,6 +145,10 @@ const StyledCardWrapper = styled(CardWrapper)`
     font-size: 22px;
     font-weight: 900;
     letter-spacing: 1px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 
   .subtitle {
@@ -133,6 +156,10 @@ const StyledCardWrapper = styled(CardWrapper)`
     color: #00ffff;
     font-weight: 300;
     letter-spacing: 1px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 
   .subtext {
@@ -141,10 +168,19 @@ const StyledCardWrapper = styled(CardWrapper)`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      text-align: center;
+    }
   }
 
   .subscription {
     font-size: 16px;
     color: #fff5e4;
+
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+    }
   }
 `;

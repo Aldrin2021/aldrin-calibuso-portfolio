@@ -108,6 +108,7 @@ const StyledBox = styled.div`
 
 const StyledTestimonial = styled.div`
   border-bottom: 1px solid #555;
+  padding-bottom: 15px;
 `;
 
 const StyledTestimonialContent = styled.p`
