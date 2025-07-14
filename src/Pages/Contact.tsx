@@ -1,74 +1,249 @@
 import React from "react";
 import styled from "styled-components";
+import emailjs from "@emailjs/browser";
+import { ReactComponent as LinkedInIcon } from "../Images/Socials/linkedin.svg";
+import { ReactComponent as GithubIcon } from "../Images/Socials/github.svg";
+import { EmailModal } from "../Modal/EmailModal";
 
 export const Contact: React.FC = () => {
+  const form = React.useRef<HTMLFormElement | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [success, setSuccess] = React.useState<boolean>(false);
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.current) return;
+
+    setLoading(true);
+
+    emailjs
+      .sendForm(
+        "service_rplotds",
+        "template_scjzk4r",
+        form.current,
+        "Habt0-Y2FSIZRfH2X"
+      )
+      .then(
+        () => {
+          setSuccess(true);
+          form.current?.reset();
+        },
+        (error) => {
+          alert("Failed to send message: " + error.text);
+        }
+      )
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <React.Fragment>
-      <StyledContainer>
+      <StyledContainer
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-offset="0"
+        data-aos-once="true"
+      >
         <StyledBox>
-          <StyledMainHeader
-          // data-aos="fade-left"
-          // data-aos-easing="ease-in-back"
-          // data-aos-delay="300"
-          // data-aos-offset="0"
-          >
-            Let's Connect
+          <StyledMainHeader>
+            <span>Let's Connect</span>
           </StyledMainHeader>
+          <FormWrapper>
+            <StyledForm ref={form} onSubmit={sendEmail}>
+              <p>
+                If you have any inquiries or just want to say Hi, please use the
+                contact form!
+              </p>
+              <input
+                type="text"
+                name="user_name"
+                placeholder="Your Name"
+                required
+              />
+              <input
+                type="email"
+                name="user_email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea name="message" placeholder="Your Message" required />
+              <button type="submit" id="email-btn">
+                {loading ? "Sending..." : "Send Email"}
+              </button>
+            </StyledForm>
+          </FormWrapper>
+          <StyledSection>
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/aldrin-calibuso/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <LinkedInIcon />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/Aldrin2021"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GithubIcon />
+                </a>
+              </li>
+            </ul>
+          </StyledSection>
         </StyledBox>
       </StyledContainer>
+      {success && (
+        <EmailModal children={success} onClose={() => setSuccess(false)} />
+      )}
     </React.Fragment>
   );
 };
 
 const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
   height: 100vh;
   margin: 0 auto;
-
-  @media screen and (max-width: 768px) {
-    height: auto;
-  }
+  padding: 0 20px;
 `;
 
 const StyledBox = styled.div`
-  padding: 0 30px 0 30px;
-  margin: 40px;
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: 768px) {
-    padding: 0;
-  }
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0 auto;
 `;
 
 const StyledMainHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  color: #fffffe;
-  flex: 1;
-  padding-bottom: 20px;
-  margin: 0;
   align-items: center;
-  box-sizing: border-box;
+  color: #fffffe;
   width: 100%;
-  font-size: 80px;
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 900;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
 
-  &::before {
+  span {
+    margin: 0 1rem;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  &::before,
+  &::after {
     content: "";
     flex-grow: 1;
     height: 2px;
-    margin-right: 15px;
+    margin-left: 15px;
     background: #ffeee4;
     opacity: 0.3;
-    max-width: auto;
-    border: 1px solid red;
+  }
+`;
+
+const FormWrapper = styled.div`
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #666;
+    font-size: 1rem;
+    resize: none;
+    color: #ebecf3;
+    background: #1e1e1e;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border: 1px solid #00ffff;
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #1e1e1e inset;
+    -webkit-text-fill-color: #ebecf3;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  p {
+    color: #ebecf3;
+    font-size: 0.9rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    color: white;
+    font-size: 1rem;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #00ffff;
+      color: #000;
+      font-weight: 600;
+    }
+  }
+`;
+
+const StyledSection = styled.div`
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 25px;
+    list-style: none;
+    padding: 0;
+  }
+
+  ul li {
+    pointer-events: bounding-box;
+
+    p {
+      color: #ebecf3;
+    }
+
+    :hover {
+      transition: fill 0.2s ease-in;
+      fill: #00ffff;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    ul {
+      gap: 0.75rem;
+    }
   }
 `;

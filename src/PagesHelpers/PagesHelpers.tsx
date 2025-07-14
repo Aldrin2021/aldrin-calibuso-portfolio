@@ -1,4 +1,5 @@
 import { keyframes } from "styled-components";
+import { useEffect, useState } from "react";
 import typeScriptImage from "../Images/typescript.png";
 import reactJSImage from "../Images/react.png";
 import htmlImage from "../Images/html-five.png";
@@ -196,6 +197,29 @@ export const feedback: FeedbackSection[] = [
     feedbackRole: "Scrum Master Manager",
   },
 ];
+
+const MOBILE_BREAKPOINT = 767;
+
+export const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState<boolean>(
+    window.innerWidth <= MOBILE_BREAKPOINT
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return isMobile;
+};
 
 export const slideDown = keyframes`
   from {

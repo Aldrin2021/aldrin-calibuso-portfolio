@@ -9,14 +9,19 @@ export const Feedback: React.FC = () => {
       <StyledContainer>
         <StyledBox>
           <StyledMainHeader
-            data-aos="fade-right"
-            data-aos-delay="100"
+            data-aos="fade-up"
+            data-aos-delay="200"
             data-aos-offset="0"
             data-aos-once="true"
           >
             Feedback<label>.</label>
           </StyledMainHeader>
-          <ScrollWrapper>
+          <ScrollWrapper
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-offset="0"
+            data-aos-once="true"
+          >
             <Track>
               {[...feedback, ...feedback].map((item, i) => (
                 <TestimonialCard key={i} {...item} />
@@ -54,35 +59,33 @@ const StyledBox = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 0;
+    margin: 5px;
   }
 `;
 
 const StyledMainHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  color: #fffffe;
-  padding: 30px 0 30px 0;
-  margin: 0;
   align-items: center;
-  box-sizing: border-box;
+  color: #fffffe;
   width: 100%;
-  font-size: 80px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
 
   label {
-    margin-left: 2px;
+    margin-left: 5px;
     color: #00ffff;
-    font-size: 80px;
+    font-size: inherit;
   }
 
   &::after {
     content: "";
     flex-grow: 1;
     height: 2px;
-    margin-right: 15px;
+    margin-left: 15px;
     background: #ffeee4;
     opacity: 0.3;
-    max-width: auto;
   }
 `;
 
@@ -111,6 +114,13 @@ const ScrollWrapper = styled.div`
   &::after {
     right: 0;
     background: linear-gradient(to left, #111 0%, transparent 100%);
+  }
+
+  @media screen and (max-width: 768px) {
+    &::before,
+    &::after {
+      background: none;
+    }
   }
 `;
 

@@ -9,8 +9,9 @@ export const SectionLabel: React.FC<Props> = ({ sectionTitle }) => {
   return (
     <React.Fragment>
       <StyledTitleLabel
-        data-aos="fade"
+        data-aos="fade-up"
         data-aos-delay="200"
+        data-aos-offset="0"
         data-aos-once="true"
       >
         <span>{sectionTitle}</span>

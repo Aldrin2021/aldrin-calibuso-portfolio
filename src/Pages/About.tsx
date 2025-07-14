@@ -28,15 +28,15 @@ export const About: React.FC = () => {
       <StyledContainer>
         <StyledBox>
           <StyledMainHeader
-            data-aos="fade-right"
-            data-aos-delay="100"
+            data-aos="fade-up"
+            data-aos-delay="200"
             data-aos-offset="0"
             data-aos-once="true"
           >
             About<label>.</label>
           </StyledMainHeader>
           <StyledHeader
-            data-aos="fade"
+            data-aos="fade-up"
             data-aos-delay="200"
             data-aos-offset="0"
             data-aos-once="true"
@@ -62,8 +62,9 @@ export const About: React.FC = () => {
           </StyledHeader>
           <SectionLabel sectionTitle="TECH STACK" />
           <StyledFlexButton
-            data-aos="fade"
+            data-aos="fade-up"
             data-aos-delay="200"
+            data-aos-offset="0"
             data-aos-once="true"
           >
             <Button
@@ -91,8 +92,9 @@ export const About: React.FC = () => {
           {filteredAbout && (
             <Sample key={filteredAbout.label}>
               <StyledCardContainer
-                data-aos="fade"
+                data-aos="fade-up"
                 data-aos-delay="200"
+                data-aos-offset="0"
                 data-aos-once="true"
               >
                 {filteredAbout?.skills.map(({ title, image }) => (
@@ -125,28 +127,30 @@ const StyledContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     height: auto;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 20px;
   }
 `;
 
 const StyledMainHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  color: #fffffe;
-  flex: 1;
-  padding-bottom: 20px;
-  margin: 0;
   align-items: center;
-  box-sizing: border-box;
+  color: #fffffe;
   width: 100%;
-  font-size: 80px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
 
   label {
-    margin-left: 2px;
+    margin-left: 5px;
     color: #00ffff;
-    font-size: 80px;
+    font-size: inherit;
   }
 
   &::after {
@@ -156,64 +160,56 @@ const StyledMainHeader = styled.div`
     margin-left: 15px;
     background: #ffeee4;
     opacity: 0.3;
-    max-width: auto;
   }
 `;
 
 const StyledBox = styled.div`
-  padding: 0 30px 0 30px;
+  padding: 0 30px;
   margin: 40px;
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 768px) {
-    padding: 0;
+  @media screen and (max-width: 767px) {
+    padding: 0 10px;
+    margin: 20px 0;
   }
 `;
 
 const Sample = styled.div`
-  padding: 0;
-  margin: 0;
+  margin-top: 1.5rem;
 `;
 
 const StyledHeader = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0
-  margin: 0;
   align-items: center;
-  box-sizing: border-box;
+  gap: 2rem;
   text-align: justify;
 
+  .text {
+    flex: 1 1 300px;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    color: #b0b0b0;
+  }
+
   img {
-    flex: 1;
-    height: 400px;
-    width: 400px;
+    flex: 1 1 300px;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
-  .text {
-    flex: 1;
-    min-width: 250px;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #b0b0b0; 
-  }
-
   @media screen and (max-width: 768px) {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 12px;
-    box-sizing: border-box;
-    text-align: center;
+    flex-direction: column;
+
+    .text {
+      width: 100%;
+    }
 
     img {
-      width: 300px;
-      height: 300px;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+      height: auto;
     }
   }
 `;
@@ -222,15 +218,24 @@ const StyledCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
   height: 110px;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    margin-bottom: 110px;
+  }
 `;
 
 const StyledFlexButton = styled.div`
   display: flex;
-  justify-content: left;
-  padding: 20px 0 20px 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 1rem;
-  flex: 1;
+  padding: 20px 0;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
