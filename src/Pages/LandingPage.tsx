@@ -80,7 +80,6 @@ export const LandingPage: React.FC = () => {
           scrollToSection={scrollToSection}
         />
       )}
-
       <div id="home">
         <Home />
       </div>

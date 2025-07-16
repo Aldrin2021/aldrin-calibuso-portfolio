@@ -15,6 +15,7 @@ export const Experiences: React.FC = () => {
         >
           Experience<label>.</label>
         </StyledMainHeader>
+
         <StyledFlex
           data-aos="fade-up"
           data-aos-delay="200"
@@ -54,7 +55,8 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   margin: 0 auto;
 
   @media screen and (max-width: 767px) {
@@ -69,7 +71,7 @@ const StyledContainer = styled.div`
 
 const StyledBox = styled.div`
   padding: 0 30px;
-  margin: 40px;
+  margin: 0 40px;
   display: flex;
   flex-direction: column;
 
@@ -77,6 +79,45 @@ const StyledBox = styled.div`
     padding: 0 10px;
     margin: 20px 0;
   }
+`;
+
+const StyledMainHeader = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #fffffe;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  padding-bottom: 20px;
+  width: 100%;
+
+  label {
+    margin-left: 5px;
+    color: #00ffff;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  &::before {
+    content: "";
+    flex-grow: 1;
+    height: 2px;
+    margin-right: 15px;
+    background: #ffeee4;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 767px) {
+    &::before {
+      margin-right: 10px;
+    }
+  }
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 `;
 
 const StyledCard = styled.div`
@@ -88,58 +129,9 @@ const StyledCard = styled.div`
   }
 `;
 
-const StyledMainHeader = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  color: #fffffe;
-  flex: 1;
-  padding-bottom: 20px;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 900;
-
-  label {
-    margin-left: 2px;
-    color: #00ffff;
-    font-size: 80px;
-  }
-
-  &::before {
-    content: "";
-    flex-grow: 1;
-    height: 2px;
-    margin-right: 15px;
-    background: #ffeee4;
-    opacity: 0.3;
-    max-width: auto;
-  }
-
-  @media screen and (max-width: 767px) {
-    font-size: 36px;
-    label {
-      font-size: 36px;
-    }
-    &::before {
-      margin-right: 10px;
-    }
-  }
-`;
-
-const StyledFlex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 1rem;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`;
-
 const StyledCardWrapper = styled(CardWrapper)`
+  padding: 15px;
+
   .title {
     color: #fff5e4;
     font-size: 22px;
@@ -155,7 +147,6 @@ const StyledCardWrapper = styled(CardWrapper)`
     font-size: 18px;
     color: #00ffff;
     font-weight: 300;
-    letter-spacing: 1px;
 
     @media screen and (max-width: 767px) {
       font-size: 16px;

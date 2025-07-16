@@ -50,6 +50,7 @@ export const Contact: React.FC = () => {
           <StyledMainHeader>
             <span>Let's Connect</span>
           </StyledMainHeader>
+
           <FormWrapper>
             <StyledForm ref={form} onSubmit={sendEmail}>
               <p>
@@ -74,6 +75,7 @@ export const Contact: React.FC = () => {
               </button>
             </StyledForm>
           </FormWrapper>
+
           <StyledSection>
             <ul>
               <li>
@@ -98,6 +100,7 @@ export const Contact: React.FC = () => {
           </StyledSection>
         </StyledBox>
       </StyledContainer>
+
       {success && (
         <EmailModal children={success} onClose={() => setSuccess(false)} />
       )}
@@ -109,31 +112,42 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  height: 100vh;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledBox = styled.div`
   width: 100%;
   max-width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0 auto;
+
+  @media screen and (max-width: 767px) {
+    height: auto;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 50px;
+  }
 `;
 
 const StyledMainHeader = styled.div`
   display: flex;
   align-items: center;
   color: #fffffe;
-  width: 100%;
   font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 900;
   padding-bottom: 20px;
   flex-wrap: wrap;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
 
   span {
     margin: 0 1rem;
@@ -150,16 +164,22 @@ const StyledMainHeader = styled.div`
     background: #ffeee4;
     opacity: 0.3;
   }
+
+  @media (max-width: 480px) {
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    span {
+      margin: 0;
+    }
+  }
 `;
 
 const FormWrapper = styled.div`
   width: 100%;
-  padding: 0;
   box-sizing: border-box;
-
-  @media screen and (min-width: 768px) {
-    padding: 0;
-  }
 `;
 
 const StyledForm = styled.form`
@@ -167,6 +187,12 @@ const StyledForm = styled.form`
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
+  width: 100%;
+
+  p {
+    color: #ebecf3;
+    font-size: 0.95rem;
+  }
 
   input,
   textarea {
@@ -193,11 +219,6 @@ const StyledForm = styled.form`
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  p {
-    color: #ebecf3;
-    font-size: 0.9rem;
-  }
-
   button {
     width: 100%;
     padding: 12px;
@@ -218,32 +239,32 @@ const StyledForm = styled.form`
 `;
 
 const StyledSection = styled.div`
+  width: 100%;
+  margin-top: 25px;
+
   ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 25px;
+    gap: 1.2rem;
     list-style: none;
     padding: 0;
-  }
+    margin: 0;
 
-  ul li {
     pointer-events: bounding-box;
-
-    p {
-      color: #ebecf3;
-    }
 
     :hover {
       transition: fill 0.2s ease-in;
       fill: #00ffff;
     }
-  }
 
-  @media screen and (max-width: 480px) {
-    ul {
-      gap: 0.75rem;
+    @media (max-width: 480px) {
+      gap: 1.5rem;
+
+      li svg {
+        width: 28px;
+        height: 28px;
+      }
     }
   }
 `;
