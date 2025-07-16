@@ -60,7 +60,9 @@ export const About: React.FC = () => {
               stacks.
             </div>
           </StyledHeader>
+
           <SectionLabel sectionTitle="TECH STACK" />
+
           <StyledFlexButton
             data-aos="fade-up"
             data-aos-delay="200"
@@ -89,6 +91,7 @@ export const About: React.FC = () => {
               Tools
             </Button>
           </StyledFlexButton>
+
           {filteredAbout && (
             <Sample key={filteredAbout.label}>
               <StyledCardContainer
@@ -97,15 +100,17 @@ export const About: React.FC = () => {
                 data-aos-offset="0"
                 data-aos-once="true"
               >
-                {filteredAbout?.skills.map(({ title, image }) => (
-                  <Card
-                    key={title}
-                    title={title}
-                    image={image}
-                    subtitle="INTERMIDIATE"
-                    isOnlyTitle
-                  />
-                ))}
+                <StyledFlex>
+                  {filteredAbout?.skills.map(({ title, image }) => (
+                    <Card
+                      key={title}
+                      title={title}
+                      image={image}
+                      subtitle="INTERMIDIATE"
+                      isOnlyTitle
+                    />
+                  ))}
+                </StyledFlex>
               </StyledCardContainer>
             </Sample>
           )}
@@ -114,6 +119,8 @@ export const About: React.FC = () => {
     </React.Fragment>
   );
 };
+
+// Styled Components
 
 const StyledContainer = styled.div`
   display: flex;
@@ -124,7 +131,8 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   margin: 0 auto;
 
   @media screen and (max-width: 767px) {
@@ -175,10 +183,6 @@ const StyledBox = styled.div`
   }
 `;
 
-const Sample = styled.div`
-  margin-top: 1.5rem;
-`;
-
 const StyledHeader = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -214,20 +218,6 @@ const StyledHeader = styled.div`
   }
 `;
 
-const StyledCardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
-  align-items: center;
-  height: 110px;
-
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-    margin-bottom: 110px;
-  }
-`;
-
 const StyledFlexButton = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -238,4 +228,42 @@ const StyledFlexButton = styled.div`
   @media screen and (max-width: 768px) {
     justify-content: center;
   }
+`;
+
+const StyledCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  min-height: 110px;
+  height: auto;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    margin-bottom: 110px;
+  }
+`;
+
+const StyledFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+`;
+
+const Sample = styled.div`
+  margin-top: 1.5rem;
 `;

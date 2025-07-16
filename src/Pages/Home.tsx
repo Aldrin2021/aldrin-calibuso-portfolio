@@ -46,7 +46,7 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.div`
   color: #ebecf3;
-  font-size: 105px;
+  font-size: clamp(2rem, 6vw, 15rem);
   font-weight: 900;
   letter-spacing: 2px;
 
@@ -56,20 +56,18 @@ const StyledTitle = styled.div`
   }
 
   @media (max-width: 767px) {
-    font-size: 30px;
-    padding: 0;
     text-align: center;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1024px) {
-    font-size: 60px;
+    text-align: center;
   }
 `;
 
 const StyledRole = styled.div`
   color: #ebecf3;
   font-weight: 100;
-  font-size: 40px;
+  font-size: clamp(2rem, 6vw, 1rem);
 
   label {
     font-weight: 600;
@@ -84,6 +82,6 @@ const StyledRole = styled.div`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1024px) {
-    font-size: 30px;
+    text-align: center;
   }
 `;

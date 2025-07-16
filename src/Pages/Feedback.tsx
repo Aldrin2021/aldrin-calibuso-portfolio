@@ -49,17 +49,18 @@ const StyledContainer = styled.div`
 `;
 
 const StyledBox = styled.div`
-  padding: 0 40px 0 40px;
+  padding: 0 30px;
   margin: 40px;
   overflow: hidden;
   display: flex;
   width: auto;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   flex-direction: column;
 
   @media screen and (max-width: 768px) {
     padding: 0;
-    margin: 5px;
+    margin: 100px 20px;
   }
 `;
 
