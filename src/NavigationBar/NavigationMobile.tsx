@@ -80,6 +80,7 @@ const StyledMobileUnList = styled.ul<{ isOpen: boolean }>`
   top: 60px;
   left: 0;
   width: 100%;
+  height: 100vh;
   max-height: ${({ isOpen }) => (isOpen ? "calc(100vh - 60px)" : "0")};
   background: #333;
   list-style: none;
@@ -92,7 +93,7 @@ const StyledMobileUnList = styled.ul<{ isOpen: boolean }>`
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   overflow: hidden;
   pointer-events: ${({ isOpen }) => (isOpen ? "auto" : "none")};
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
   z-index: 999;
 `;
 

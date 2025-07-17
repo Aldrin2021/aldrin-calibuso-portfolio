@@ -5,18 +5,19 @@ import { sections } from "../PagesHelpers/PagesHelpers";
 interface Props {
   activeSection?: string | boolean;
   scrollToSection: (id: string) => void;
-  menuOpen: boolean;
-  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const NavigationBar: React.FC<Props> = ({
   activeSection,
   scrollToSection,
-  menuOpen,
-  setMenuOpen,
 }) => {
   return (
-    <NavContainer>
+    <NavContainer
+      data-aos="fade"
+      data-aos-delay="200"
+      data-aos-offset="0"
+      data-aos-once="true"
+    >
       <NavList>
         {sections.map(({ id, label }) => (
           <NavItem key={id}>
@@ -48,6 +49,7 @@ const NavContainer = styled.nav`
   flex-direction: column;
   align-items: stretch;
   padding-top: 20px;
+  z-index: 1000;
 `;
 
 const NavList = styled.ul`

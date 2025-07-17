@@ -7,11 +7,13 @@ import { Home } from "./Home";
 import { Contact } from "./Contact";
 import { Feedback } from "./Feedback";
 import { NavigationMobile } from "../NavigationBar/NavigationMobile";
+import { Loader } from "../Loader/Loader";
 
 export const LandingPage: React.FC = () => {
   const [activeSection, setActiveSection] = React.useState<string | boolean>(
     "home"
   );
+  const [isLoading, setLoading] = React.useState<boolean>(true);
   const isMobile = useIsMobile();
 
   React.useEffect(() => {
@@ -67,38 +69,49 @@ export const LandingPage: React.FC = () => {
     }
   };
 
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      {isMobile ? (
-        <NavigationMobile
-          activeSection={activeSection}
-          scrollToSection={scrollToSection}
-        />
+      {isLoading ? (
+        <Loader />
       ) : (
-        <NavigationWrapper
-          activeSection={activeSection}
-          scrollToSection={scrollToSection}
-        />
+        <>
+          {isMobile ? (
+            <NavigationMobile
+              activeSection={activeSection}
+              scrollToSection={scrollToSection}
+            />
+          ) : (
+            <NavigationWrapper
+              activeSection={activeSection}
+              scrollToSection={scrollToSection}
+            />
+          )}
+
+          <div id="home">
+            <Home />
+          </div>
+          <div id="about">
+            <About />
+          </div>
+          <div id="experiences">
+            <Experiences />
+          </div>
+          <div id="feedback">
+            <Feedback />
+          </div>
+          <div id="contact">
+            <Contact />
+          </div>
+        </>
       )}
-      <div id="home">
-        <Home />
-      </div>
-
-      <div id="about">
-        <About />
-      </div>
-
-      <div id="experiences">
-        <Experiences />
-      </div>
-
-      <div id="feedback">
-        <Feedback />
-      </div>
-
-      <div id="contact">
-        <Contact />
-      </div>
     </>
   );
 };
