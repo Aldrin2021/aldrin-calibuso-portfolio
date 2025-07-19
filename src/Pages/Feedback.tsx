@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 
 export const Feedback: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,7 +32,6 @@ export const Feedback: React.FC = () => {
         >
           <Swiper
             spaceBetween={30}
-            slidesPerView="auto"
             centeredSlides={true}
             loop={true}
             autoplay={{
@@ -38,7 +39,6 @@ export const Feedback: React.FC = () => {
               disableOnInteraction: false,
             }}
             effect="coverflow"
-            navigation={true}
             coverflowEffect={{
               rotate: 50,
               stretch: 0,
@@ -50,12 +50,30 @@ export const Feedback: React.FC = () => {
               setActiveIndex(swiper.realIndex % feedback.length)
             }
             modules={[Autoplay, EffectCoverflow, Pagination]}
+            // pagination={{ clickable: true }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              480: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 1.1,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: "auto",
+                spaceBetween: 30,
+              },
+            }}
           >
             {[...feedback, ...feedback].map((item, i) => (
               <SwiperSlide
                 key={i}
                 className={i % feedback.length === activeIndex ? "active" : ""}
-                style={{ width: "auto" }}
               >
                 <TestimonialCard
                   {...item}
@@ -75,7 +93,11 @@ export const Feedback: React.FC = () => {
 const StyledContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
+
+  @media screen and (max-width: 767px) {
+    padding: 5px;
+  }
 `;
 
 const StyledBox = styled.div`
@@ -83,14 +105,11 @@ const StyledBox = styled.div`
   margin: 40px;
   overflow: visible;
   display: flex;
-  width: auto;
-  min-height: 100vh;
-  height: auto;
   flex-direction: column;
 
-  @media screen and (max-width: 768px) {
-    padding: 0;
-    margin: 100px 20px;
+  @media screen and (max-width: 767px) {
+    padding: 0 10px;
+    margin: 20px 0;
   }
 `;
 
@@ -131,12 +150,26 @@ const ScrollWrapper = styled.div`
     align-items: flex-start;
     overflow: visible;
     background: none !important;
+    width: auto;
+    max-width: 450px;
+
+    @media screen and (max-width: 1024px) {
+      max-width: 90vw;
+    }
+
+    @media screen and (max-width: 768px) {
+      max-width: 94vw;
+    }
+
+    @media screen and (max-width: 480px) {
+      max-width: 96vw;
+    }
   }
 
   .swiper-slide-prev,
   .swiper-slide-next {
     background: #222 !important;
-    opacity: 5px;
+    opacity: 0.4 !important;
   }
 
   .swiper-pagination-bullet {
@@ -175,7 +208,7 @@ const ScrollWrapper = styled.div`
   @media screen and (max-width: 767px) {
     &::before,
     &::after {
-      background: none;
+      display: none;
     }
   }
 `;
