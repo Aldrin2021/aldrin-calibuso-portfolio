@@ -5,7 +5,7 @@ export const Download: React.FC = () => {
   return (
     <React.Fragment>
       <StyledButton
-        href="/AldrinCalibuso_CV.pdf"
+        href={`${process.env.PUBLIC_URL}/AldrinCalibuso_CV.pdf`}
         target="_blank"
         rel="noopener noreferrer"
       >
