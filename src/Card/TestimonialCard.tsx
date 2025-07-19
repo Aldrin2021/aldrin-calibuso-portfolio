@@ -7,6 +7,7 @@ interface Props {
   feedbackContent?: string;
   feedbackAuthor?: string;
   feedbackRole?: string;
+  isBorder?: boolean;
 }
 
 export const TestimonialCard: React.FC<Props> = ({
@@ -15,11 +16,12 @@ export const TestimonialCard: React.FC<Props> = ({
   feedbackContent,
   feedbackAuthor,
   feedbackRole,
+  isBorder,
 }) => {
   return (
     <React.Fragment>
       <StyledContainer>
-        <StyledBox>
+        <StyledBox isBorder={isBorder}>
           <img src={image} alt="feedback-author" className="feedback-author" />
           <div className="top-quote">
             <img src={svg} alt="top-quote" />
@@ -49,21 +51,23 @@ const StyledContainer = styled.div`
   margin: 2rem;
 `;
 
-const StyledBox = styled.div`
+const StyledBox = styled.div<{ isBorder?: boolean }>`
   position: relative;
   background: #222;
   padding: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: white;
   border-radius: 8px;
+  transition: all 0.3s ease;
+  border: ${({ isBorder }) => (isBorder ? "1px solid #666" : "")};
 
   .feedback-author {
     position: absolute;
-    top: -40px;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 4px solid #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
