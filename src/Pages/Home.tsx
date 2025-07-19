@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { NavigationSocials } from "../NavigationBar/NavigationSocials";
-import myPic from "../Images/picture.png";
 
 export const Home: React.FC = () => {
   return (
@@ -13,7 +12,6 @@ export const Home: React.FC = () => {
         data-aos-once="true"
       >
         <NavigationSocials />
-        {/* <StyledImage src={myPic} /> */}
         <StyledContent>
           <StyledTitle>Hello, I'm Aldrin</StyledTitle>
           <StyledRole>
@@ -31,24 +29,6 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-`;
-
-const StyledImage = styled.img`
-  width: clamp(300px, 50vw, 1000px);
-  height: auto;
-  position: absolute;
-  right: 0;
-  top: 50px;
-  z-index: -1;
-  object-fit: contain;
-
-  @media (max-width: 767px) {
-    width: 100%;
-    height: auto;
-    opacity: 0.1;
-    position: static;
-    margin-top: 40px;
-  }
 `;
 
 const StyledContent = styled.div`
