@@ -33,7 +33,8 @@ export const About: React.FC = () => {
             data-aos-offset="0"
             data-aos-once="true"
           >
-            About<label>.</label>
+            <span>About</span>
+            <label>.</label>
           </StyledMainHeader>
           <StyledHeader
             data-aos="fade-up"
@@ -120,8 +121,6 @@ export const About: React.FC = () => {
   );
 };
 
-// Styled Components
-
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -152,7 +151,7 @@ const StyledMainHeader = styled.div`
   width: 100%;
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   flex-wrap: wrap;
 
   label {

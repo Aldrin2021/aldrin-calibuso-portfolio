@@ -88,7 +88,8 @@ const StyledMobileUnList = styled.ul<{ isOpen: boolean }>`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 3rem;
+  justify-content: center;
 
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   overflow: hidden;
@@ -106,13 +107,22 @@ const StyledLink = styled.a`
   color: #ebecf3;
   text-decoration: none;
   font-size: 18px;
+  border: 2px solid #444;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 
   &.active {
     font-weight: bold;
-    border-bottom: 2px solid #00ffff;
+    border-bottom: 1px solid #00ffff;
+    border-radius: 10px;
+    color: #00ffff;
   }
 
   &:hover {
-    color: #ddd;
+    color: #00ffff;
   }
 `;
