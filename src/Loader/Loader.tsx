@@ -5,7 +5,6 @@ export const Loader: React.FC = () => {
   const [fadeOut, setFadeOut] = useState(false);
 
   React.useEffect(() => {
-    // Simulate loading finish after 3 seconds, then start fade out
     const timer = setTimeout(() => setFadeOut(true), 1000);
 
     return () => clearTimeout(timer);

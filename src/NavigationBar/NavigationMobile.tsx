@@ -21,7 +21,11 @@ export const NavigationMobile: React.FC<Props> = ({
   return (
     <StyledMobileNavContainer activeSection={activeSection === "home"}>
       <StyledTopBar>
-        <StyledButtonBurger onClick={toggleNavigation}>☰</StyledButtonBurger>
+        <StyledButtonBurger onClick={toggleNavigation} isOpen={isOpen}>
+          <span />
+          <span />
+          <span />
+        </StyledButtonBurger>
         <Download />
       </StyledTopBar>
       <StyledMobileUnList isOpen={isOpen} aria-expanded={isOpen}>
@@ -65,14 +69,45 @@ const StyledTopBar = styled.div`
   z-index: 1001; /* Above the menu */
 `;
 
-const StyledButtonBurger = styled.button`
-  padding: 5px 10px;
-  background: none;
+const StyledButtonBurger = styled.button<{ isOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
   border: none;
-  color: #fff;
-  font-size: 28px;
   cursor: pointer;
-  user-select: none;
+  padding: 0;
+  z-index: 10;
+
+  span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    &:nth-child(1) {
+      transform: ${({ isOpen }) => (isOpen ? "rotate(40deg)" : "rotate(0)")};
+    }
+
+    &:nth-child(2) {
+      opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
+      transform: ${({ isOpen }) =>
+        isOpen ? "translateX(20px)" : "translateX(0)"};
+    }
+
+    &:nth-child(3) {
+      transform: ${({ isOpen }) => (isOpen ? "rotate(-40deg)" : "rotate(0)")};
+    }
+  }
+
+  &:hover span {
+    background: #00ffff;
+  }
 `;
 
 const StyledMobileUnList = styled.ul<{ isOpen: boolean }>`
@@ -94,7 +129,7 @@ const StyledMobileUnList = styled.ul<{ isOpen: boolean }>`
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   overflow: hidden;
   pointer-events: ${({ isOpen }) => (isOpen ? "auto" : "none")};
-  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
   z-index: 999;
 `;
 

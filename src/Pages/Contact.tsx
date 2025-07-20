@@ -259,12 +259,7 @@ const StyledSection = styled.div`
     }
 
     @media (max-width: 480px) {
-      gap: 1.5rem;
-
-      li svg {
-        width: 28px;
-        height: 28px;
-      }
+      gap: 1rem;
     }
   }
 `;
