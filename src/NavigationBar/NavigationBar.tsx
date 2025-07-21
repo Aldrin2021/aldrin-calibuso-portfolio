@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useSections } from "../PagesHelpers/PagesHelpers";
+import { sections } from "../PagesHelpers/PagesHelpers";
 
 interface Props {
   activeSection?: string | boolean;
@@ -11,8 +11,6 @@ export const NavigationBar: React.FC<Props> = ({
   activeSection,
   scrollToSection,
 }) => {
-  const sections = useSections();
-
   return (
     <NavContainer>
       <NavList>
