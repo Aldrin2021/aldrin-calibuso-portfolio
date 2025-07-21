@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { sections } from "../PagesHelpers/PagesHelpers";
+import { useSections } from "../PagesHelpers/PagesHelpers";
 
 interface Props {
   activeSection?: string | boolean;
@@ -11,13 +11,10 @@ export const NavigationBar: React.FC<Props> = ({
   activeSection,
   scrollToSection,
 }) => {
+  const sections = useSections();
+
   return (
-    <NavContainer
-      data-aos="fade"
-      data-aos-delay="200"
-      data-aos-offset="0"
-      data-aos-once="true"
-    >
+    <NavContainer>
       <NavList>
         {sections.map(({ id, label }) => (
           <NavItem key={id}>
