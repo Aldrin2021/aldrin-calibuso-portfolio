@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useSections } from "../PagesHelpers/PagesHelpers";
+import { sections } from "../PagesHelpers/PagesHelpers";
 import React from "react";
 import { Download } from "../Button/Download";
 
@@ -13,7 +13,6 @@ export const NavigationMobile: React.FC<Props> = ({
   scrollToSection,
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const sections = useSections();
   const toggleNavigation = () => {
     setIsOpen((prev) => !prev);
   };

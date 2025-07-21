@@ -13,33 +13,18 @@ import author1Img from "../Images/TestimonialAuthor/author-1.jpeg";
 import author2Img from "../Images/TestimonialAuthor/author-2.jpeg";
 import author3Img from "../Images/TestimonialAuthor/author-3.jpg";
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-
 interface Section {
   id: string;
   label: string;
 }
 
-export const useSections = () => {
-  const [sections, setSections] = useState<Section[]>([]);
-
-  useEffect(() => {
-    const fetchSections = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "sections"));
-        const data = querySnapshot.docs.map((doc) => doc.data() as Section);
-        setSections(data);
-      } catch (err) {
-        console.error("Error fetching sections: ", err);
-      }
-    };
-
-    fetchSections();
-  }, []);
-
-  return sections;
-};
+export const sections: Section[] = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experiences", label: "Experience" },
+  { id: "feedback", label: "Feedback" },
+  { id: "contact", label: "Contact" },
+];
 
 type Skill = {
   title: string;
@@ -49,28 +34,6 @@ type Skill = {
 type AboutSection = {
   label: string;
   skills: Skill[];
-};
-
-export const useAbout = () => {
-  const [about, setAbout] = useState<AboutSection[]>([]);
-
-  useEffect(() => {
-    const fetchAbout = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "about"));
-        const data = querySnapshot.docs.map((doc) =>
-          doc.data()
-        ) as AboutSection[];
-        setAbout(data);
-      } catch (err) {
-        console.error("Error fetching about: ", err);
-      }
-    };
-
-    fetchAbout();
-  }, []);
-
-  return about;
 };
 
 export const about: AboutSection[] = [
