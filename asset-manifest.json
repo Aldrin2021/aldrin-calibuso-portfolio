@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/aldrin-calibuso-portfolio/static/css/main.422de2a8.css",
-    "main.js": "/aldrin-calibuso-portfolio/static/js/main.25682356.js",
+    "main.js": "/aldrin-calibuso-portfolio/static/js/main.bffe0e91.js",
     "static/js/453.ba3a80f6.chunk.js": "/aldrin-calibuso-portfolio/static/js/453.ba3a80f6.chunk.js",
     "static/media/author-2.jpeg": "/aldrin-calibuso-portfolio/static/media/author-2.e9ee5793ac88b6e7f22c.jpeg",
     "static/media/author-1.jpeg": "/aldrin-calibuso-portfolio/static/media/author-1.71a101162e7926996d9b.jpeg",
@@ -15,11 +15,11 @@
     "index.html": "/aldrin-calibuso-portfolio/index.html",
     "static/media/quote-mark.svg": "/aldrin-calibuso-portfolio/static/media/quote-mark.a650d0ffe0158578251d54fe4e441342.svg",
     "main.422de2a8.css.map": "/aldrin-calibuso-portfolio/static/css/main.422de2a8.css.map",
-    "main.25682356.js.map": "/aldrin-calibuso-portfolio/static/js/main.25682356.js.map",
+    "main.bffe0e91.js.map": "/aldrin-calibuso-portfolio/static/js/main.bffe0e91.js.map",
     "453.ba3a80f6.chunk.js.map": "/aldrin-calibuso-portfolio/static/js/453.ba3a80f6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.422de2a8.css",
-    "static/js/main.25682356.js"
+    "static/js/main.bffe0e91.js"
   ]
 }
