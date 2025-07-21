@@ -47,7 +47,7 @@ export const LandingPage: React.FC = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [activeSection, sections]);
+  }, [activeSection]);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
