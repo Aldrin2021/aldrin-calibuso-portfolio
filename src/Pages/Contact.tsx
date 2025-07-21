@@ -4,6 +4,8 @@ import emailjs from "@emailjs/browser";
 import { ReactComponent as LinkedInIcon } from "../Images/Socials/linkedin.svg";
 import { ReactComponent as GithubIcon } from "../Images/Socials/github.svg";
 import { EmailModal } from "../Modal/EmailModal";
+import Lottie from "lottie-react";
+import loadingDots from "./loading-dots.json";
 
 export const Contact: React.FC = () => {
   const form = React.useRef<HTMLFormElement | null>(null);
@@ -38,6 +40,24 @@ export const Contact: React.FC = () => {
       });
   };
 
+  const handleInputField = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const key = event.key;
+    const value = (event.target as HTMLInputElement).value;
+    const isSpaceAndLetter = /^[a-zA-Z ]$/.test(key);
+    const isOneDash = key === "-" && !value.includes("-");
+
+    const controlKeys = [
+      "Backspace",
+      "Delete",
+      "Tab",
+      "ArrowRight",
+      "ArrowLeft",
+    ];
+    if (!isSpaceAndLetter && !isOneDash && !controlKeys.includes(key)) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <React.Fragment>
       <StyledContainer
@@ -61,6 +81,8 @@ export const Contact: React.FC = () => {
                 type="text"
                 name="user_name"
                 placeholder="Your Name"
+                className="contact-name"
+                onKeyDown={handleInputField}
                 required
               />
               <input
@@ -71,7 +93,18 @@ export const Contact: React.FC = () => {
               />
               <textarea name="message" placeholder="Your Message" required />
               <button type="submit" id="email-btn">
-                {loading ? "Sending..." : "Send Email"}
+                {loading ? (
+                  <LottieWrapper>
+                    <Lottie
+                      animationData={loadingDots}
+                      loop={true}
+                      autoPlay
+                      style={{ width: "150px", height: "25px" }}
+                    />
+                  </LottieWrapper>
+                ) : (
+                  "Send Email"
+                )}
               </button>
             </StyledForm>
           </FormWrapper>
@@ -262,4 +295,12 @@ const StyledSection = styled.div`
       gap: 1rem;
     }
   }
+`;
+
+const LottieWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1;
 `;

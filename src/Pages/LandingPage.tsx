@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationWrapper } from "../NavigationBar/NavigationWrapper";
-import { sections, useIsMobile } from "../PagesHelpers/PagesHelpers";
+import { useIsMobile, useSections } from "../PagesHelpers/PagesHelpers";
 import { About } from "./About";
 import { Experiences } from "./Experiences";
 import { Home } from "./Home";
@@ -15,6 +15,7 @@ export const LandingPage: React.FC = () => {
   );
   const [isLoading, setLoading] = React.useState<boolean>(true);
   const isMobile = useIsMobile();
+  const sections = useSections();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +48,7 @@ export const LandingPage: React.FC = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [activeSection]);
+  }, [activeSection, sections]);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
