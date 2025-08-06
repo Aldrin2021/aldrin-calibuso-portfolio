@@ -13,7 +13,7 @@ export const Experiences: React.FC = () => {
           data-aos-offset="0"
           data-aos-once="true"
         >
-          Experience<label>.</label>
+          Experienc<Accent>e.</Accent>
         </StyledMainHeader>
 
         <StyledFlex
@@ -81,36 +81,23 @@ const StyledBox = styled.div`
   }
 `;
 
-const StyledMainHeader = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+const StyledMainHeader = styled.h1`
   color: #fffffe;
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 6rem);
   font-weight: 900;
   padding-bottom: 20px;
   width: 100%;
-
-  label {
-    margin-left: 5px;
-    color: #00ffff;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-  }
-
-  &::before {
-    content: "";
-    flex-grow: 1;
-    height: 2px;
-    margin-right: 15px;
-    background: #ffeee4;
-    opacity: 0.3;
-  }
+  text-align: right;
 
   @media screen and (max-width: 767px) {
     &::before {
       margin-right: 10px;
     }
   }
+`;
+
+const Accent = styled.span`
+  color: #00ffff;
 `;
 
 const StyledFlex = styled.div`

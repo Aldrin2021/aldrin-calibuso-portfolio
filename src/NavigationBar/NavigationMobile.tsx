@@ -72,8 +72,7 @@ const StyledButtonBurger = styled.button<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 30px;
-  height: 25px;
+  height: 27px;
   background: transparent;
   border: none;
   cursor: pointer;
