@@ -33,8 +33,7 @@ export const About: React.FC = () => {
             data-aos-offset="0"
             data-aos-once="true"
           >
-            <span>About</span>
-            <label>.</label>
+            Abou<Accent>t.</Accent>
           </StyledMainHeader>
           <StyledHeader
             data-aos="fade-up"
@@ -144,30 +143,16 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledMainHeader = styled.div`
-  display: flex;
-  align-items: center;
+const StyledMainHeader = styled.h1`
   color: #fffffe;
   width: 100%;
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 6rem);
   font-weight: 900;
-  padding-bottom: 15px;
-  flex-wrap: wrap;
+  white-space: nowrap;
+`;
 
-  label {
-    margin-left: 5px;
-    color: #00ffff;
-    font-size: inherit;
-  }
-
-  &::after {
-    content: "";
-    flex-grow: 1;
-    height: 2px;
-    margin-left: 15px;
-    background: #ffeee4;
-    opacity: 0.3;
-  }
+const Accent = styled.span`
+  color: #00ffff;
 `;
 
 const StyledBox = styled.div`
